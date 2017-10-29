@@ -1,6 +1,6 @@
 -- BY Mohammed hisham
--- BY @MAGno_on
--- BY @EVAN_TA
+-- BY @TH3BOSS
+-- BY @llDEV1ll
 
 tdcli = dofile('./tg/tdcli.lua')
 serpent = (loadfile "./libs/serpent.lua")()
@@ -21,12 +21,12 @@ notify.init ("Telegram updates")
 chats = {}
 plugins = {}
 
-function EVAN2 (user, msg)
+function do_notify (user, msg)
 	local n = notify.Notification.new(user, msg)
 	n:show ()
 end
 
-function EVAN1 (arg, data)
+function dl_cb (arg, data)
 	-- vardump(data)
 end
 
@@ -77,22 +77,22 @@ function save_config( )
 end
 
 function create_config( )
-	io.write('\n\27[1;33m🌐║ ادخل ايدي حسابك لتصبح مطور 👇 \27[0;39;49m\n')
+	io.write('\n\27[1;33mادخل ايدي حسابك لتصبح مطور 👇 \27[0;39;49m\n')
 	local SUDO = tonumber(io.read())
 if not tostring(SUDO):match('%d+') then
-    SUDO = 60809019
+    SUDO = 354962113
   end
-    	io.write('\n\27[1;33m🌐║ ارسل توكن البوت الان 👇 \27[0;39;49m\n')
+  	io.write('\n\27[1;33mارسل توكن البوت الان 👇 \27[0;39;49m\n')
 	local token = io.read()
-	 	io.write('\n\27[1;33m🌐║ ادخل الان اسم البوت الذي تريده 👇 \27[0;39;49m\n')
+	 	io.write('\n\27[1;33mادخل الان اسم البوت الذي تريده 👇 \27[0;39;49m\n')
 	local botname = io.read()
 	if botname =="" then
-  botname = "ايفان"
+  botname = "كوكي"
 end
-io.write('\n\27[1;33m🌐║ ادخل معرف المطور 👇 \27[0;39;49m\n')
+io.write('\n\27[1;33mادخل معرف المطور 👇 \27[0;39;49m\n')
 	local sudouser = io.read()
 	if sudouser =="" then
-  sudouser = "@MAGno_on"
+  sudouser = "@y303y"
 end
 
 	config = {
@@ -111,7 +111,7 @@ end
 	sudouser = sudouser,
 	bot_name = botname,
     moderation = {data = './data/moderation.json'},
-	info_text = "🌐║ EVAN\n\n🌐║ SᑌᗪO : @MAGno_on \n\n🌐║ EVAN ↭ Final Version 22 \n\n🌐║ ᑕᕼ ↭ @EVAN_TA\n\n",
+	info_text = "\n\n🌐║ SᑌᗪO : @y3soo \n\n🌐║ yasser \nn",
 
   }
   file = io.open("TH3BOSS.sh", "w")
@@ -144,7 +144,7 @@ file:close()
 	serialize_to_file(config, './data/config.lua')
 	print ('saved config into config.lua')
 	if token=="" then
-print("🌐║ لم تقم بوضع التوكن يجب عليك وضع التوكن في ملف البوت ليعمل السورس\n")
+print("🚸┇ لم تقم بوضع التوكن يجب عليك وضع التوكن في ملف البوت ليعمل السورس\n")
 os.execute(' rm -fr data/config.lua && rm -fr ./launch.sh ')
 print ('\n\n\n you did not Enter token \n i delete file launch and config.lua \n\n\n now Run file instal.sh\n ')
 return
@@ -176,8 +176,8 @@ _config = load_config()
 
 
 
-sudouser =_config.sudouser 
-SUDO = _config.SUDO 
+sudouser =_config.sudouser
+SUDO = _config.SUDO
 bot_name = _config.bot_name
 
 
@@ -196,7 +196,7 @@ function load_plugins()
 			print('\27[31m'..err..'\27[39m')
 		end
 	end
-	print('\n'..#config.enabled_plugins..' Plugins Are Active\n\nStarting EVAN    Robot...\n')
+	print('\n'..#config.enabled_plugins..' Plugins Are Active\n\nStarting TH3BOSS V22 TH3B3ST  Robot...\n')
 end
 
 load_plugins()
@@ -286,14 +286,14 @@ function file_cb(msg)
 			else
 			photo_id = data.content_.photo_.sizes_[1].photo_.id_
 			end
-			tdcli.downloadFile(photo_id, EVAN1, nil)
+			tdcli.downloadFile(photo_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 	elseif msg.content_.ID == "MessageVideo" then
 		video_id = ''
 		local function get_cb(arg, data)
 			video_id = data.content_.video_.video_.id_
-			tdcli.downloadFile(video_id, EVAN1, nil)
+			tdcli.downloadFile(video_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 	elseif msg.content_.ID == "MessageAnimation" then
@@ -301,14 +301,14 @@ function file_cb(msg)
 		local function get_cb(arg, data)
 			anim_id = data.content_.animation_.animation_.id_
 			anim_name = data.content_.animation_.file_name_
-			 tdcli.downloadFile(anim_id, EVAN1, nil)
+			 tdcli.downloadFile(anim_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 	elseif msg.content_.ID == "MessageVoice" then
 		voice_id = ''
 		local function get_cb(arg, data)
 			voice_id = data.content_.voice_.voice_.id_
-			tdcli.downloadFile(voice_id, EVAN1, nil)
+			tdcli.downloadFile(voice_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 	elseif msg.content_.ID == "MessageAudio" then
@@ -317,14 +317,14 @@ function file_cb(msg)
 			audio_id = data.content_.audio_.audio_.id_
 			audio_name = data.content_.audio_.file_name_
 			audio_title = data.content_.audio_.title_
-			tdcli.downloadFile(audio_id, EVAN1, nil)
+			tdcli.downloadFile(audio_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 	elseif msg.content_.ID == "MessageSticker" then
 		sticker_id = ''
 		local function get_cb(arg, data)
 			sticker_id = data.content_.sticker_.sticker_.id_
-			tdcli.downloadFile(sticker_id, EVAN1, nil)
+			tdcli.downloadFile(sticker_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 	elseif msg.content_.ID == "MessageDocument" then
@@ -332,7 +332,7 @@ function file_cb(msg)
 		local function get_cb(arg, data)
 			document_id = data.content_.document_.document_.id_
 			document_name = data.content_.document_.file_name_
-			tdcli.downloadFile(document_id, EVAN1, nil)
+			tdcli.downloadFile(document_id, dl_cb, nil)
 		end
 		tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = msg.id_ }, get_cb, nil)
 end
@@ -352,13 +352,13 @@ function tdcli_update_callback (data)
 		local hash = 'msgs:'..msg.sender_user_id_..':'..msg.chat_id_
 		redis:incr(hash)
 		if redis:get('markread') == 'on' then
-			tdcli.viewMessages(msg.chat_id_, {[0] = msg.id_}, EVAN1, nil)
+			tdcli.viewMessages(msg.chat_id_, {[0] = msg.id_}, dl_cb, nil)
     end
 		if ((not d) and chat) then
 			if msg.content_.ID == "MessageText" then
-				EVAN2 (chat.title_, msg.content_.text_)
+				do_notify (chat.title_, msg.content_.text_)
 			else
-				EVAN2 (chat.title_, msg.content_.ID)
+				do_notify (chat.title_, msg.content_.ID)
 			end
 		end
 		if msg_valid(msg) then
@@ -436,6 +436,6 @@ function tdcli_update_callback (data)
 		chat = data.chat_
 		chats[chat.id_] = chat
 	elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then
-		tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, EVAN1, nil)
+		tdcli_function ({ID="GetChats", offset_order_="9223372036854775807", offset_chat_id_=0, limit_=20}, dl_cb, nil)    
 	end
 end
